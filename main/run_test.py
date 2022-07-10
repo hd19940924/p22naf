@@ -22,7 +22,7 @@ class RunTest:
 		fail_count = []
 		#10  0,1,2,3
 		rows_count = self.data.get_case_lines()
-		for rows_count in range(1,rows_count):
+		for rows_count in range(1,9):
 			is_run = self.data.get_is_run(rows_count)
 			if is_run:
 				url = self.data.get_request_url(rows_count)

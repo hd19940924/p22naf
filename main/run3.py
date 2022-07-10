@@ -6,20 +6,23 @@ from base.runmethod import RunMethod
 from data.get_data import GetData
 from util.common_util import CommonUtil
 from util.operation_excel import OperationExcel
+#from util.configEmail1 import SendEmail
+from util.send_email import SendEmail
 class RunTest(object):
     def __init__(self):
         self.runmin = RunMethod()
         self.data = GetData()
         self.com_util = CommonUtil()
         self.op=OperationExcel()
+        self.send_mai = SendEmail()
     def run(self):
         res = None
         pass_count = []
         fail_count = []
         row_counts = self.data.get_case_lines()  # 获取excel表格行数
         #print(row_counts) #5
-        for i in range(1, row_counts):
-            #print(i)# 1,2,3,4
+        for i in range(1, 10):
+            print(i)# 1,2,3,4
             url = self.data.get_request_url(i)
             method = self.data.get_request_method(i)
             is_run = self.data.get_is_run(i)
@@ -40,17 +43,20 @@ class RunTest(object):
                 res = self.runmin.run_main(method, url, data, header)
                # print(res[2])
                 print(res)
-            if self.com_util.is_contains(expect, res):
-                print("测试通过")
-                pass_count.append("success")
-                self.data.write_result(i, 'pass')
-                pass_count.append("success")
-            else:
-                print("测试失败")
-                self.data.write_result(i, 'fail')
-                fail_count.append("fail")
+                if self.com_util.is_contains(expect, res):
+                  print("测试通过")
+                  pass_count.append("success")
+                  self.data.write_result(i, 'pass')
+                  pass_count.append("success")
+                else:
+                  print("测试失败")
+                  self.data.write_result(i, 'fail')
+                  fail_count.append("fail")
         print("pass:",(len(pass_count)))
         print("fail:",(len(fail_count)))
+        #m.send_email()
+        self.send_mai.send_main(pass_count, fail_count)
+
 
         #return res
 if __name__ == '__main__':
