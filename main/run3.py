@@ -8,6 +8,7 @@ from util.common_util import CommonUtil
 from util.operation_excel import OperationExcel
 #from util.configEmail1 import SendEmail
 from util.send_email import SendEmail
+from util.ding2 import sendDing
 class RunTest(object):
     def __init__(self):
         self.runmin = RunMethod()
@@ -15,6 +16,7 @@ class RunTest(object):
         self.com_util = CommonUtil()
         self.op=OperationExcel()
         self.send_mai = SendEmail()
+        self.send_din=sendDing()
     def run(self):
         res = None
         pass_count = []
@@ -56,6 +58,7 @@ class RunTest(object):
         print("fail:",(len(fail_count)))
         #m.send_email()
         self.send_mai.send_main(pass_count, fail_count)
+        self.send_din.Send_Ding(pass_count, fail_count)
 
 
         #return res
