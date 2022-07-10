@@ -5,9 +5,10 @@ class RunMethod():
 	def post_main(self,url,data,header=None):
 		res = None
 		if header !=None:	
-			res = requests.post(url=url,data=data,headers=header)
+			res = requests.post(url=url,data=data,headers=header,verify=False)
 		else:
-			res = requests.post(url=url,data=data)
+			#res = requests.post(url=url,data=data)
+			res=requests.post(url=url,data=json.dumps(data),verify=False)
 			#return json.dumps(res, ensure_ascii=False, sort_keys=True, indent=2)
 			#print(res.status_code)
 		#return res
