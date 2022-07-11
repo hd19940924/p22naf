@@ -6,7 +6,6 @@ from base.runmethod import RunMethod
 from data.get_data import GetData
 from util.common_util import CommonUtil
 from util.operation_excel import OperationExcel
-#from util.configEmail1 import SendEmail
 from util.send_email import SendEmail
 from util.ding2 import sendDing
 class RunTest(object):
@@ -54,11 +53,11 @@ class RunTest(object):
                   print("测试失败")
                   self.data.write_result(i, 'fail')
                   fail_count.append("fail")
-        print("pass:",(len(pass_count)))
+        print("pass:",(len(pass_count)))#输入通过的结果数
         print("fail:",(len(fail_count)))
         #m.send_email()
-        self.send_mai.send_main(pass_count, fail_count)
-        self.send_din.Send_Ding(pass_count, fail_count)
+        self.send_mai.send_main(pass_count, fail_count)#邮件发送测试结果
+        self.send_din.Send_Ding(pass_count, fail_count)#钉钉发送测试结果
 
 
         #return res

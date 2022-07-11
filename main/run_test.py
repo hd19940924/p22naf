@@ -8,12 +8,14 @@ from data.dependent_data import DependdentData
 from util.send_email import SendEmail
 from util.operation_header import OperationHeader
 from util.operation_json import OperetionJson
+from util.ding2 import sendDing
 class RunTest:
 	def __init__(self):
 		self.run_method = RunMethod()
 		self.data = GetData()
 		self.com_util = CommonUtil()
 		self.send_mai = SendEmail()
+		self.send_din = sendDing()
 
 	#程序执行的
 	def go_on_run(self):
@@ -65,6 +67,7 @@ class RunTest:
 					self.data.write_result(rows_count,res)
 					fail_count.append(rows_count)
 		self.send_mai.send_main(pass_count,fail_count)
+		self.send_din.Send_Ding(pass_count, fail_count)  # 钉钉发送测试结果
 
 
 	#将执行判断封装

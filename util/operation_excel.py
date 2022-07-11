@@ -1,13 +1,17 @@
 #coding:utf-8
 import xlrd
 from xlutils.copy import copy
+import getpathInfo
+import os
+path = getpathInfo.get_Path()
 class OperationExcel:
 	def __init__(self,file_name=None,sheet_id=None):
 		if file_name:
 			self.file_name = file_name
 			self.sheet_id = sheet_id	
 		else:
-			self.file_name = '../dataconfig/case1.xls'
+			xlsPath = os.path.join(path, "dataconfig" ,"case1.xls")
+			self.file_name = xlsPath#'../dataconfig/case1.xls'
 			self.sheet_id = 0
 		self.data = self.get_data()
 
