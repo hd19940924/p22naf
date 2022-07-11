@@ -8,6 +8,12 @@ from util.common_util import CommonUtil
 from util.operation_excel import OperationExcel
 from util.send_email import SendEmail
 from util.ding2 import sendDing
+import getpathInfo
+import os
+from logging.handlers import TimedRotatingFileHandler
+from util.Log import  logging
+import util.Log
+log =util.Log.logger
 class RunTest(object):
     def __init__(self):
         self.runmin = RunMethod()
@@ -16,6 +22,9 @@ class RunTest(object):
         self.op=OperationExcel()
         self.send_mai = SendEmail()
         self.send_din=sendDing()
+       # log.info()  # 将resultPath的值输入到日志，方便定位查看问题
+        #log.info()  # 同理
+        #log.info()  # 同理
     def run(self):
         res = None
         pass_count = []
@@ -31,6 +40,7 @@ class RunTest(object):
             #expect = self.data.get_expcet_data_for_mysql(i)
             expect = self.data.get_expcet_data(i)
             header = self.data.is_header(i)
+            log.info("url:"+url)
             print('url:', url)
             print('method:', method)
             print('is_run:', is_run)
@@ -56,8 +66,8 @@ class RunTest(object):
         print("pass:",(len(pass_count)))#输入通过的结果数
         print("fail:",(len(fail_count)))
         #m.send_email()
-        self.send_mai.send_main(pass_count, fail_count)#邮件发送测试结果
-        self.send_din.Send_Ding(pass_count, fail_count)#钉钉发送测试结果
+        #self.send_mai.send_main(pass_count, fail_count)#邮件发送测试结果
+       # self.send_din.Send_Ding(pass_count, fail_count)#钉钉发送测试结果
 
 
         #return res
