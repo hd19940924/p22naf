@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-__author__ = 'cdtaogang'
-__date__ = '2019/6/21 11:57'
+__author__ = 'hd'
+__date__ = '2022/7/10 11:50'
 import json
 from base.runmethod import RunMethod
 from data.get_data import GetData
