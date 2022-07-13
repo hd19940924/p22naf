@@ -72,8 +72,24 @@ class OperationExcel:
 			cols = self.data.col_values(0)
 		return cols
 
+	def get_xls(self, xls_name, sheet_name):  # xls_name填写用例的Excel名称 sheet_name该Excel的sheet名称
+		cls = []
+		# 获取用例文件路径
+		xlsPath = os.path.join(path, "dataconfig",  xls_name)
+		file = xlrd.open_workbook(xlsPath)  # 打开用例Excel
+		# file = openpyxl.load_workbook(xlsPath)
+		sheet = file.sheet_by_name(sheet_name)  # 获得打开Excel的sheet
+		# sheet = file.get_sheet_names(sheet_name)
+		# 获取这个sheet内容行数
+		nrows = sheet.nrows
+		for i in range(1,nrows):  # 根据行数做循环
+			if sheet.row_values(i)[0] != u'case_name':  # 如果这个Excel的这个sheet的第i行的第一列不等于case_name那么我们把这行的数据添加到cls[]
+				cls.append(sheet.row_values(i))
+		return cls
+
 
 if __name__ == '__main__':
 	opers = OperationExcel()
 	print(opers.get_cell_value(1,2))
 	print(opers.get_lines())
+	print(opers.get_xls("case1.xls","sheet1"))

@@ -7,7 +7,8 @@ from data.get_data import GetData
 from util.common_util import CommonUtil
 from util.operation_excel import OperationExcel
 from util.send_email import SendEmail
-from util.ding2 import sendDing
+from util.send_dingding import sendDing
+from util.log1 import logger
 import getpathInfo
 import os
 from logging.handlers import TimedRotatingFileHandler
@@ -40,7 +41,18 @@ class RunTest(object):
             #expect = self.data.get_expcet_data_for_mysql(i)
             expect = self.data.get_expcet_data(i)
             header = self.data.is_header(i)
+            log.info("第{0}条case测试开始".format(i))
             log.info("url:"+url)
+            log.info('method:' +method)
+            #log.info('is_run:'+is_run)
+            log.info('data:'+json.dumps(data))
+            #log.info('header:'+header)
+            log.info("expect:"+expect)
+            logger.warning('颜色')
+            logger.error('error')
+            logger.info("ppp")
+            logger.critical('critical')
+            #log.info("第{0}条case测试结束".format(i))
             print('url:', url)
             print('method:', method)
             print('is_run:', is_run)
@@ -54,13 +66,21 @@ class RunTest(object):
                 res = self.runmin.run_main(method, url, data, header)
                # print(res[2])
                 print(res)
+                #print(type(res))
+                #log.info(res)
                 if self.com_util.is_contains(expect, res):
                   print("测试通过")
+                  log.info("测试通过")
                   pass_count.append("success")
                   self.data.write_result(i, 'pass')
                   pass_count.append("success")
                 else:
-                  print("测试失败")
+                  #print("测试失败")
+                  print("\033[31m测试失败\033[0m")
+                  log.info("测试失败")
+                  log.info("第{0}条case测试结束".format(i))
+                  log.info(
+                      "========================================================================================================================")
                   self.data.write_result(i, 'fail')
                   fail_count.append("fail")
         print("pass:",(len(pass_count)))#输入通过的结果数

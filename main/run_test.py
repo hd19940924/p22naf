@@ -8,7 +8,7 @@ from data.dependent_data import DependdentData
 from util.send_email import SendEmail
 from util.operation_header import OperationHeader
 from util.operation_json import OperetionJson
-from util.ding2 import sendDing
+from util.send_dingding import sendDing
 class RunTest:
 	def __init__(self):
 		self.run_method = RunMethod()

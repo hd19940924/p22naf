@@ -1,16 +1,27 @@
 import os
 import logging
 from logging.handlers import TimedRotatingFileHandler
+import colorlog
 import getpathInfo
 
 path = getpathInfo.get_Path()
 log_path = os.path.join(path, 'report')  # 存放log文件的路径
+log_colors_config={
+    "DEBUG":"cyan",
+    "INFO":"green",
+    "WARNING":"yellow",
+    "ERROR":"red",
+    "CRITICAL":"red"
+
+}
 
 
 class Logger(object):
     def __init__(self, logger_name='logs…'):
         self.logger = logging.getLogger(logger_name)
         logging.root.setLevel(logging.NOTSET)
+        console_handler = logging.StreamHandler()
+        console_handler.setLevel(logging.DEBUG)
         self.log_file_name = 'logs'  # 日志文件的名称
         self.backup_count = 5  # 最多存放日志的数量
         # 日志输出级别
@@ -18,6 +29,7 @@ class Logger(object):
         self.file_output_level = 'DEBUG'
         # 日志输出格式
         self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        #self.formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
     def get_logger(self):
         """在logger中添加日志句柄并返回，如果logger已有句柄，则直接返回"""
@@ -25,6 +37,7 @@ class Logger(object):
             console_handler = logging.StreamHandler()
             console_handler.setFormatter(self.formatter)
             console_handler.setLevel(self.console_output_level)
+
             self.logger.addHandler(console_handler)
 
             # 每天重新创建一个日志文件，最多保留backup_count份
