@@ -14,6 +14,8 @@ import os
 from logging.handlers import TimedRotatingFileHandler
 from util.Log import  logging
 import util.Log
+import sys
+sys.path.append("/root/.jenkins/workspace/自动化测试")
 log =util.Log.logger
 class RunTest(object):
     def __init__(self):
