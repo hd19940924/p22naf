@@ -89,7 +89,9 @@ class OperationExcel:
 
 
 if __name__ == '__main__':
-	opers = OperationExcel()
+	"""opers = OperationExcel()
 	print(opers.get_cell_value(1,2))
 	print(opers.get_lines())
-	print(opers.get_xls("case1.xls","sheet1"))
+	print(opers.get_xls("case1.xls","sheet1"))"""
+	data = OperationExcel().get_xls("case1.xls", "sheet1")
+	print(data[2])

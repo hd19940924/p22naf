@@ -10,7 +10,7 @@ from util.operation_header import OperationHeader
 from util.operation_json import OperetionJson
 from util.send_dingding import sendDing
 class RunTest:
-	def __init__(self):
+	def __init__(self):#构造内部函数，进行实例化，以便调用
 		self.run_method = RunMethod()
 		self.data = GetData()
 		self.com_util = CommonUtil()
@@ -24,7 +24,7 @@ class RunTest:
 		fail_count = []
 		#10  0,1,2,3
 		rows_count = self.data.get_case_lines()
-		for rows_count in range(1,9):
+		for rows_count in range(1,9):#for循环遍历达到参数化接口测试
 			is_run = self.data.get_is_run(rows_count)
 			if is_run:
 				url = self.data.get_request_url(rows_count)
@@ -66,8 +66,8 @@ class RunTest:
 				else:
 					self.data.write_result(rows_count,res)
 					fail_count.append(rows_count)
-		self.send_mai.send_main(pass_count,fail_count)
-		self.send_din.Send_Ding(pass_count, fail_count)  # 钉钉发送测试结果
+		#self.send_mai.send_main(pass_count,fail_count)#发送邮件
+		#self.send_din.Send_Ding(pass_count, fail_count)  # 钉钉发送测试结果
 
 
 	#将执行判断封装

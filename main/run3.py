@@ -16,23 +16,23 @@ from util.Log import  logging
 import util.Log
 log =util.Log.logger
 class RunTest(object):
-    def __init__(self):
+    def __init__(self):#构造内部函数，进行实例化，以便调用
         self.runmin = RunMethod()
         self.data = GetData()
         self.com_util = CommonUtil()
         self.op=OperationExcel()
         self.send_mai = SendEmail()
         self.send_din=sendDing()
-       # log.info()  # 将resultPath的值输入到日志，方便定位查看问题
-        #log.info()  # 同理
-        #log.info()  # 同理
+       # log.info()  #
+        #log.info()  #
+        #log.info()  #
     def run(self):
         res = None
         pass_count = []
         fail_count = []
         row_counts = self.data.get_case_lines()  # 获取excel表格行数
         #print(row_counts) #5
-        for i in range(1, 10):
+        for i in range(1, 10):#for循环遍历达到参数化接口测试
             print(i)# 1,2,3,4
             url = self.data.get_request_url(i)
             method = self.data.get_request_method(i)
@@ -72,7 +72,7 @@ class RunTest(object):
                   print("测试通过")
                   log.info("测试通过")
                   pass_count.append("success")
-                  self.data.write_result(i, 'pass')
+                  self.data.write_result(i, 'pass')#写入测试结果
                   pass_count.append("success")
                 else:
                   #print("测试失败")
@@ -81,10 +81,10 @@ class RunTest(object):
                   log.info("第{0}条case测试结束".format(i))
                   log.info(
                       "========================================================================================================================")
-                  self.data.write_result(i, 'fail')
+                  self.data.write_result(i, 'fail')#写入测试结果
                   fail_count.append("fail")
-        print("pass:",(len(pass_count)))#输入通过的结果数
-        print("fail:",(len(fail_count)))
+        print("pass:",(len(pass_count)))#统计通过的结果数
+        print("fail:",(len(fail_count)))#统计失败
         #m.send_email()
         #self.send_mai.send_main(pass_count, fail_count)#邮件发送测试结果
        # self.send_din.Send_Ding(pass_count, fail_count)#钉钉发送测试结果

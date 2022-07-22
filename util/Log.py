@@ -2,6 +2,7 @@ import os
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import colorlog
+from colorlog import ColoredFormatter
 import getpathInfo
 
 path = getpathInfo.get_Path()
