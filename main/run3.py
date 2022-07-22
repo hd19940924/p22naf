@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'hd'
 __date__ = '2022/7/10 11:50'
+import sys
+sys.path.append("/root/.jenkins/workspace/自动化测试")
 import json
 from base.runmethod import RunMethod
 from data.get_data import GetData
