@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'hd'
 __date__ = '2022/7/10 11:50'
+import sys
+sys.path.append("/root/.jenkins/workspace/自动化测试")
 import json
 from base.runmethod import RunMethod
 from data.get_data import GetData
@@ -14,6 +16,8 @@ import os
 from logging.handlers import TimedRotatingFileHandler
 from util.Log import  logging
 import util.Log
+import sys
+sys.path.append("/root/.jenkins/workspace/自动化测试")
 log =util.Log.logger
 class RunTest(object):
     def __init__(self):#构造内部函数，进行实例化，以便调用
